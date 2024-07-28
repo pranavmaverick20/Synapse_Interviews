@@ -3,7 +3,7 @@ import functools
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-df = pd.read_csv(r"C:\Users\admin\Desktop\synapse tasks\GE_2024_Results.csv")
+df = pd.read_csv(r"C:\Users\admin\Desktop\synapse tasks\Synapse_Interviews\Task 2\GE_2024_Results.csv")
 dimensions = df.shape
 rows = dimensions[0]
 columns = dimensions[1]
@@ -29,9 +29,9 @@ telangana_df = telangana_df.sort_values('Total Votes', ascending=False)
 print("Top 5 candidates from Telangana: -")
 print(telangana_df.head(5))
 
-states = (set(df["State"]))
+# states = (set(df["State"]))
 # i = 1
-statesc = {key: 0 for key in states}
+# statesc = {key: 0 for key in states}
 # while i < rows:
 #     for key in statesc:
 #         if (df.iloc[i]["State"] == key):
@@ -39,17 +39,23 @@ statesc = {key: 0 for key in states}
 #             continue
 #     i += 1
 # print(statesc)  # Complexity can be improved by using groupBy function
-for key in statesc:
-    state_votes = df[df["State"] == key]["Total Votes"]
-    statesc[key] = float(state_votes.sum())
-total_votes = float(df["Total Votes"].sum())
-print(statesc)
-print("Total number of votes: -")
-print(total_votes)
-statesp = statesc.copy()
-for key in statesp:
-    statesp[key] = float(statesc[key])*(100/total_votes)
+# for key in statesc:
+#     state_votes = df[df["State"] == key]["Total Votes"]
+#     statesc[key] = float(state_votes.sum())
+# total_votes = float(df["Total Votes"].sum())
+# print(statesc)
+# print("Total number of votes: -")
+# print(total_votes)
+# statesp = statesc.copy()
+# for key in statesp:
+#     statesp[key] = float(statesc[key])*(100/total_votes)
+# print(statesp)
+state_votes = df.groupby('State')['Total Votes'].sum()
+print(state_votes)
+total_votes=df["Total Votes"].sum()
+statesp=state_votes.map(lambda p: p*100/total_votes)
 print(statesp)
+
 
 parties = set(df["Party"])
 parties_votes = {key: 0 for key in parties}
