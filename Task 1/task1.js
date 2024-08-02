@@ -38,7 +38,7 @@ const factors = (n) => {
 
 };
 
-const obj = {};
+const obj = {}; //to store outputs in an object
 for (let i = a; i < b; i++) {
     if (isPrime(i)) {
         obj[i] = binary(i);
@@ -48,6 +48,6 @@ for (let i = a; i < b; i++) {
     }
 }
 console.log(obj);
-
+//output if range is 2 to 8{2: '10', 3: '11', 4: [1, 2, 4], 5: '101', 6: [1, 2, 3, 6], 7: '111' }
 
 
