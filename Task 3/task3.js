@@ -19,11 +19,11 @@ app.post('/api/book', async (req, res) => {
     }
 });
 
-app.put('/api/book/:id', async (req, res) => {
+app.put('/api/book/:sid', async (req, res) => {
     try {
         const { name, genre, availability } = req.body;
-        const book = await Library.findOne({ id: req.params.id });
-        const newBook = await Library.findByIdAndUpdate(book._id, { name: name, genre: genre, availability: availability }, { new: true })
+        const book = await Library.findOne({ id: req.params.sid });
+        const newBook = await Library.findByIdAndUpdate(book._id, { name: name, genre: genre, availability: availability }, { new: true });
         res.status(200).json({ success: true, data: newBook });
     }
     catch (err) {

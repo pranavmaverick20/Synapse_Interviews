@@ -10,11 +10,11 @@ const LibrarySchema = mongoose.Schema({
     },
     genre: {
         type: String,
-        required: [true, "Please enter gender"]
+        required: [true, "Please enter genre"]
     },
     availability: {
         type: Boolean,
-        required: [true, "Please Enter ID"]
+        required: [true, "Please Enter status"]
     }
 
 });
